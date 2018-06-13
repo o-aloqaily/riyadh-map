@@ -1,25 +1,140 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+  font-family: 'Raleway', Avenir, sans-serif;
+}
+
+.header {
+  height: 100px;
+  background-color: #373a47;
+  display: flex;
+}
+
+.headerText {
+  flex: 1;
+  color: #fff;
+  font-size: 38px;
+  align-self: center;
+  padding-left: 100px;
+}
+
+.infoWindow {
+  border-right-style: solid;
+  border-right-width: 5px;
+  padding-right: 10px;
+  border-color: #f3f3f3;
+}
+
+.infoWindowName {
+  font-family: 'Raleway', Avenir, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
   text-align: center;
+  max-width: 200px;
+  color: #373a47;
+  margin-bottom: 0px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.infoWindowCategoryContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.infoWindowCat {
+  font-family: 'Raleway', Avenir, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  max-width: 158px;
+  color: #373a47;
+  margin: 5px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.infoWindowCatIcon {
+  background: #00cc99;
+  border-radius: 10px;
+  margin: 5px;
 }
 
-.App-intro {
-  font-size: large;
+.infoWindowImg {
+  text-align: center;
+  border-radius: 50%;
+}
+
+.infoWindowAddress {
+  display: block;
+  text-align: center;
+  font-family: 'Raleway', Avenir, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: 50px;
+  max-width: 200px;
+}
+
+.by4S {
+  color: #c3c3c3;
+  font-size: 8px;
+}
+
+/* react burger menu */
+
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #bdc3c7;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-menu a {
+  color: #b8b7ad;
+  text-decoration: none;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 @keyframes App-logo-spin {

@@ -9,10 +9,10 @@ it was developed by Osama Aloqaily, https://github.com/o-aloqaily.
 ### Installation And Run Instructions
   - using terminal, cd to the project folder
   - in the project root, type: "npm install" to install all dependencies.
-  - The, type: "npm start" to start the server
-  - You can find the website at "localhost:3000"
+  - in the project root, type: "npm run build" to build the project then "serve -s build" to run it.
+  - You can now browse the project on "localhost:3000" or on the link provided by the terminal.
 
-#####Note: It is recommended to first generate a build of the project and use it, it WAS mandatory to run the serviceworker but the serviceworker is available now even without a build.
+####Note: Using or browsing the project without first building it will cause the serviceWorker to fail running.
 
 
 

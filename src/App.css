@@ -5,7 +5,7 @@ body {
 }
 
 .header {
-  height: 100px;
+  height: 10vh;
   background-color: #373a47;
   display: flex;
 }
@@ -13,9 +13,9 @@ body {
 .headerText {
   flex: 1;
   color: #fff;
-  font-size: 38px;
+  font-size: 32px;
   align-self: center;
-  padding-left: 100px;
+  padding-left: 10vh;
 }
 
 .infoWindow {
@@ -112,14 +112,16 @@ body {
 }
 
 .deleteFilterIcon {
-  position: absolute;
-  top: 114px;
-  left: 245px;
+  position: relative;
+  top: -63px;
+  left: 205px;
   opacity: 0.5;
 }
 
 .deleteFilterIcon:hover {
   opacity: 1;
+  width: 0px;
+  height: 0px;
 }
 
 /* ----------------- react burger menu ------------------ */
@@ -127,14 +129,19 @@ body {
 .bm-burger-button {
   position: fixed;
   width: 36px;
-  height: 30px;
-  left: 36px;
-  top: 36px;
+  height: 32px;
+  left: calc(5vh - 18px);
+  top: calc(5vh - 16px);
+}
+
+.outline {
+  outline: -webkit-focus-ring-color auto 5px !important;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #bdc3c7;
+  border-radius: 50px;
 }
 
 /* Position and sizing of clickable cross button */
@@ -205,18 +212,13 @@ body {
 }
 
 @media only screen and (max-width: 500px) {
-  .header {
-    height: 50px;
-  }
   .headerText {
-    font-size: 17px;
-    padding-left: 50px;
+    font-size: 4vh;
   }
   .bm-burger-button {
-    width: 20px;
-    height: 20px;
-    left: 15px;
-    top: 15px;
+    width: 4vh;
+    height: 4vh;
+    left: calc(5vh - 2vh);
+    top: calc(5vh - 2vh);
   }
-
 }

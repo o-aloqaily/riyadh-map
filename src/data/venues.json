@@ -1,0 +1,290 @@
+[
+  {
+    "venue": {
+      "name": "TSC \"Signature\" (تي أس سي سيجنتشر)",
+      "location": {
+        "lat": 24.70220012738368,
+        "lng": 46.69202955176284
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Masmak Fortress (قصر المصمك)",
+      "location": {
+        "lat": 24.630926610866503,
+        "lng": 46.71270425994114
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "National Museum (المتحف الوطني)",
+      "location": {
+        "lat": 24.64638843157454,
+        "lng": 46.710302204158225
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Ahaji (أحاجي)",
+      "location": {
+        "lat": 24.812316444857185,
+        "lng": 46.669171534158835
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "FROZ (فروز)",
+      "location": {
+        "lat": 24.689324045229487,
+        "lng": 46.765097548605446
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Marbella resort (منتجع ماربيلا)",
+      "location": {
+        "lat": 24.81665287186792,
+        "lng": 46.43399196825056
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Jarir Bookstore (مكتبة جرير)",
+      "location": {
+        "lat": 24.77509449053024,
+        "lng": 46.682179371254456
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "‪Whites Pharmacy (صيدلية وايتس)",
+      "location": {
+        "lat": 24.789164649124544,
+        "lng": 46.702697935951704
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Four Spa",
+      "location": {
+        "lat": 24.70219946620577,
+        "lng": 46.666448640825344
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Tamimi Markets (أسواق التميمي)",
+      "location": {
+        "lat": 24.80142544418051,
+        "lng": 46.602780477903224
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "AlHilal Stadium (ملعب نادي الهلال)",
+      "location": {
+        "lat": 24.729763,
+        "lng": 46.623516
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Lusin (لوسين)",
+      "location": {
+        "lat": 24.697664218735643,
+        "lng": 46.68359577655792
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "BIOTIC (بيوتك)",
+      "location": {
+        "lat": 24.770534036480672,
+        "lng": 46.62102797216602
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Fiorenza La Piazza (فيورنزا لاپيازا)",
+      "location": {
+        "lat": 24.735721440201488,
+        "lng": 46.64726160052872
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "ميدان الملك عبدالعزيز للفروسية King abdulaziz equestrian club",
+      "location": {
+        "lat": 24.986536,
+        "lng": 46.783005
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Centria (سنتريا)",
+      "location": {
+        "lat": 24.69766168099793,
+        "lng": 46.683377808735024
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "The Roasting House (بيت التحميص)",
+      "location": {
+        "lat": 24.74361945343532,
+        "lng": 46.674461024404
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Starbucks (ستاربكس)",
+      "location": {
+        "lat": 24.702412718816415,
+        "lng": 46.65069330147822
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Mama Noura (ماما نورة)",
+      "location": {
+        "lat": 24.72431260300861,
+        "lng": 46.6564643914152
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Pizza Roma (بيتزا روما)",
+      "location": {
+        "lat": 24.700864724255013,
+        "lng": 46.6921961423007
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Danube (الدانوب)",
+      "location": {
+        "lat": 24.76981279662801,
+        "lng": 46.66511918789043
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Al Bujairi Square (ساحة البجيري)",
+      "location": {
+        "lat": 24.73700981374816,
+        "lng": 46.5746627019196
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Al Nakheel Mall (النخيل مول)",
+      "location": {
+        "lat": 24.767895106248396,
+        "lng": 46.71541213989258
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Ali Abo Alhoos (كنافة علي ابو الهوس)",
+      "location": {
+        "lat": 24.76964942877063,
+        "lng": 46.75817915909482
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Camel Step Coffee Roasters (محمصة خطوة جمل)",
+      "location": {
+        "lat": 24.769316602442746,
+        "lng": 46.69099493515608
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Al Hatab Bakery (أفران الحطب)",
+      "location": {
+        "lat": 24.732123930780872,
+        "lng": 46.76520694328427
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Juice Time (وقت العصير)",
+      "location": {
+        "lat": 24.81864027141933,
+        "lng": 46.64294110059074
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "King Abdullah's Palace (قصر الملك عبدالله)",
+      "location": {
+        "lat": 24.71582011035861,
+        "lng": 46.74547755653733
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Signature (سجنتشر)",
+      "location": {
+        "lat": 24.753069,
+        "lng": 46.610283
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "King Abdullah Road Walk (ممشى طريق الملك عبدالله)",
+      "location": {
+        "lat": 24.7427686210539,
+        "lng": 46.70106768608093
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Mondial Courts ملاعب المونديال (ملاعب المونديال)",
+      "location": {
+        "lat": 24.7466523769733,
+        "lng": 46.52372491409604
+      }
+    }
+  },
+  {
+    "venue": {
+      "name": "Thumamah  (camp)",
+      "location": {
+        "lat": 25.179855,
+        "lng": 46.619896
+      }
+    }
+  }
+]

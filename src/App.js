@@ -1,21 +1,54 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
-import MapContainer from './components/MapContainer'
-import { push as Menu } from 'react-burger-menu'
+import Map from './components/Map'
+import SideMenu from './components/SideMenu'
+import InfoWindowContent from './components/InfoWindowContent'
 import { Marker, InfoWindow } from 'react-google-maps'
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import data from './data/venues.json'
 
 const FOURSQUARE_AUTH = 'client_id=4QXNHUM0PF1VPWSMRLF0SDOE55PVTREB2UP4O5P3QU2AQUWE&client_secret=4QF0MWI05FSRTZXBLCAKTGEMCJSN10UJWGKM1QSLRSMZ53DH&v=20180710'
 class App extends Component {
+
   state = {
     venues: [],
     showingVenues: [],
-    filterInput: ''
+    filterInput: '',
   }
 
   componentDidMount() {
     this.fetchPlaces()
+    this.manageInitialFocus()
+//     document.addEventListener('keyup', function(e) {
+//   9 != e.keyCode || e.metaKey || e.ctrlKey || console.log(document.activeElement)
+// }, false)
+  }
+
+  // focus enhancements
+  manageInitialFocus() {
+    // disable burger menu items focus
+    [...document.querySelectorAll('.bm-item-list a')].forEach((item) => { item.tabIndex = -1 });
+    document.querySelector('.bm-cross-button button').tabIndex = -1
+
+    // give an outline for burger menu icon when focused and remove it on blur
+    document.querySelector('.bm-burger-button button').addEventListener('focus', function(){
+      document.querySelector('.bm-burger-button').classList.add('outline')
+    })
+    document.querySelector('.bm-burger-button button').addEventListener('blur', function(){
+      document.querySelector('.bm-burger-button').classList.remove('outline')
+    })
+
+    // give an outline for close burger menu icon when focused and remove it on blur
+    document.querySelector('.bm-cross-button button').addEventListener('focus', function(){
+      document.querySelector('.bm-cross-button').classList.add('outline')
+    })
+    document.querySelector('.bm-cross-button button').addEventListener('blur', function(){
+      document.querySelector('.bm-cross-button').classList.remove('outline')
+    });
   }
 
   fetchPlaces() {
@@ -28,17 +61,29 @@ class App extends Component {
         showingVenues: this.prepareShowingVenues(items)
       })
     })
+    .catch((error) => {
+      this.setState({
+        venues: data,
+        showingVenues: this.prepareShowingVenues(data)
+      })
+      this.renderErrorMessage(error)
+    })
+  }
+
+  renderErrorMessage(error) {
+    Alert.error(`Sorry! We could not load venues details.
+      Please check your network connection ${error}`, {
+      position: 'top',
+      effect: 'slide',
+      html: false,
+    });
   }
 
   prepareShowingVenues(items) {
     return items.map((item, index) => {
       // item is an array item, item.venue includes a single venue details
       // from foursquare.
-
-      // venue object will be keeping the venue details in our showingVenues
-      // list located in this.state
-      let venue = new Object()
-
+      let venue = {}
       venue.details = item
       venue.isInfoWindowVisible = false
       venue.marker = this.createVenueMarker(venue, index)
@@ -47,14 +92,15 @@ class App extends Component {
     })
   }
 
-  createVenueMarker(venueObject, index) {
+  createVenueMarker(venueObject, index, animation = 2) {
+    // animation values: 0 = no animation (stop bouncing), 1 = bouncing, 2 = drop
     // venueObject.venue includes a single venue details
     // from foursquare.
     const { location } = venueObject.details.venue
     return (
       <Marker
         key={index}
-        defaultAnimation={2}
+        animation={animation}
         position={{ lat: location.lat, lng: location.lng }}
         onClick={ () => this.toggleInfoWindow(index, false) }
       >
@@ -72,54 +118,37 @@ class App extends Component {
   }
 
   renderInfoWindow(venueObject) {
-    // venueObject is a this.state object contained in showingVenues
+    // venueObject is an object that represents a single venue contained in showingVenues
     // => .details contains general details about the venue,
     // => .venue contains more specific details
-    const { photo } = venueObject.details
-    let { id } = venueObject.details
-    const { name, location, categories } = venueObject.details.venue
-    let address = this.formatAddress(location)
-    id = id.slice(1,id.length)
-    return (
-      <div className='infoWindow'>
-        <img className='infoWindowImg' src={`${photo.prefix}200x200${photo.suffix}`} />
-        <p className='infoWindowName'>{ name }</p>
-        <p className='infoWindowAddress'>{ address }</p>
-        <div className='infoWindowCategoryContainer'>
-          <img className='infoWindowCatIcon' src={`${categories[0].icon.prefix}32${categories[0].icon.suffix}`} />
-          <p className='infoWindowCat'>{ categories[0].name }</p>
-        </div>
-        <a target="_blank" className='infoWindowMore' href={`https://foursquare.com/v/${id}`}>More Details</a>
-        <p className='by4S'>Powered by Foursquare</p>
-      </div>
 
-    )
-  }
-
-  formatAddress(location) {
-    let address = ""
-    if (location.address) {
-      address += location.address
-      if (location.city)
-        address += ", "
+    // if there is no photo, then foursquare api didn't load (no connection)
+    if (!venueObject.details.photo) {
+      return (
+        <p>Sorry, no network connection</p>
+      )
+    } else {
+      return (
+        <InfoWindowContent venueObject={venueObject} />
+      )
     }
-    if (location.city) {
-      address += location.city
-    }
-    return address
   }
 
   toggleInfoWindow(index, hasClosedOpenWindow) {
     if (!hasClosedOpenWindow) {
+      if (this.state.showingVenues[index].isInfoWindowVisible) {
+        return
+      }
       this.closeOpenInfoWindows()
     }
     let updatedShowingVenues = this.state.showingVenues
-    const { isInfoWindowVisible } = updatedShowingVenues[index]
+    const { isInfoWindowVisible, marker } = updatedShowingVenues[index]
+    let newAnimation = marker.props.animation === 0 || marker.props.animation === 2 ? 1 : 0
+    // 0 = no animation (stop bouncing), 1 = bouncing, 2 = drop
+
     updatedShowingVenues[index].isInfoWindowVisible = !isInfoWindowVisible
-
     updatedShowingVenues[index].marker =
-      this.createVenueMarker(updatedShowingVenues[index], index)
-
+      this.createVenueMarker(updatedShowingVenues[index], index, newAnimation)
     this.setState({ showingVenues: updatedShowingVenues })
   }
 
@@ -132,70 +161,90 @@ class App extends Component {
     }
   }
 
-  handleFilterChange(newValue) {
+  handleFilterChange(newValue, index) {
     if (newValue === '') {
       let correspondingVenues = this.prepareShowingVenues(this.state.venues)
       this.setState({ filterInput: newValue, showingVenues: correspondingVenues })
     } else {
-      const { showingVenues, venues } = this.state
+      const { venues } = this.state
 
       let correspondingVenues = venues.filter((location) => {
         return location.venue.name.toUpperCase().includes(newValue.toUpperCase())
       })
       correspondingVenues = this.prepareShowingVenues(correspondingVenues)
-
       this.setState({ filterInput: newValue, showingVenues: correspondingVenues })
+
     }
   }
 
-  handleResultClick(venue) {
-    this.setState({ filterInput: venue })
-    this.handleFilterChange(venue)
+  handleResultClick(venueName, index) {
+    const { venues, showingVenues } = this.state
+    let showingVenue = venues.filter((venue) => venue.id === showingVenues[index].details.id)
+    showingVenue = this.prepareShowingVenues(showingVenue)
+    this.setState({ filterInput: venueName, showingVenues: showingVenue },
+      () => this.toggleInfoWindow.call(this, 0)
+    )
+  }
+
+  handleDeleteFilter(e) {
+    this.setState({ filterInput: '' })
+    this.handleFilterChange('')
+  }
+
+  // helper function for the next function onMenuStateChange
+  focusFunction() {
+    // focus on
+    document.querySelector('.bm-item-list input').focus()
+  }
+
+  // handles and locks focus on the appropriate area
+  onMenuStateChange(menuState) {
+    if (menuState.isOpen) {
+      // if menu is open lock focus on menu elements only
+      [...document.querySelectorAll('.bm-item-list a')].forEach((item) => item.tabIndex = 0);
+      document.querySelector('.bm-burger-button button').tabIndex = -1;
+      document.querySelector('.bm-cross-button button').tabIndex = 0;
+      document.querySelector('.bm-item-list input').tabIndex = 0;
+      document.querySelector('.bm-item-list input').focus();
+
+      // when focus goes out of menu, force focus on the menu again
+      document.querySelector('.gm-style > [tabindex]').addEventListener('focus', this.focusFunction)
+    } else {
+      // if menu is closed lock focus on main page
+      [...document.querySelectorAll('.bm-item-list a')].forEach((item) => item.tabIndex = -1);
+      document.querySelector('.bm-burger-button button').tabIndex = 0;
+      document.querySelector('.bm-cross-button button').tabIndex = -1;
+      document.querySelector('.bm-item-list input').tabIndex = -1;
+
+      // remove the event listener so the focus be on the page again
+      document.querySelector('.gm-style > [tabindex]').removeEventListener('focus', this.focusFunction)
+
+      document.querySelector('.bm-burger-button button').focus();
+    }
   }
 
   render() {
     const { filterInput, showingVenues } = this.state
-    console.log(showingVenues)
+    // outer-container & page-wrap elements stand to help the sidemenu animate correctly
     return (
       <div id="outer-container">
-        <Menu
-          burgerButtonClassName='bm-burger-button'
-          pageWrapId={ "page-wrap" }
-          outerContainerId={ "outer-container" }
-        >
-          <div className='filterTitleContainer'>
-            <i className="fa fa-filter"></i>
-            <p className='filterTitle'>Filter Locations</p>
-          </div>
-          <input
-            className='filterInput'
-            value={filterInput}
-            onChange={(e) => this.handleFilterChange(e.target.value) }
-            placeholder='Search for something!'
-          />
-          <a onClick={() => this.handleResultClick('')}><i className="fa fa-times deleteFilterIcon"></i></a>
-          {
-            showingVenues.map((location, index) => {
-              let { name } = location.details.venue
-              name = name.replace(/[^\w\s\d!"?']/g,'');
-              return (
-                <div key={index}>
-                  <a
-                    key={index}
-                    className={ (index%2==0) ? 'list-item dark' : 'list-item' }
-                    onClick={() => this.handleResultClick(name.trim()) }
-                  >
-                    { name }
-                  </a>
-                </div>
-              )
-            })
-          }
-        </Menu>
+
+        <SideMenu
+          onMenuStateChange={this.onMenuStateChange.bind(this)}
+          showingVenues={showingVenues}
+          handleFilterChange={this.handleFilterChange.bind(this)}
+          handleResultClick={this.handleResultClick.bind(this)}
+          handleDeleteFilter={this.handleDeleteFilter.bind(this)}
+          filterInput={filterInput}
+        />
+
         <div id="page-wrap">
           <Header />
-          <MapContainer showingVenues={showingVenues} />
+          <Map
+            markers={showingVenues.map((venue) => venue.marker)}
+          />
         </div>
+        <Alert stack={{limit: 3}} />
       </div>
 
     )

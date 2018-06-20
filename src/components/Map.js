@@ -1,15 +1,12 @@
 import React from 'react';
 import { compose, withProps } from 'recompose'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
-
-const height = window.innerHeight - 100
-
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
 
 const Map = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAV-oqmMGsaBhqfQWggCf8jIuGGRbuN9rg",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `${height}px` }} />,
+    containerElement: <div style={{ height: `90vh` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs, withGoogleMap)((props) =>

@@ -23,9 +23,6 @@ class App extends Component {
   componentDidMount() {
     this.fetchPlaces()
     this.manageInitialFocus()
-//     document.addEventListener('keyup', function(e) {
-//   9 != e.keyCode || e.metaKey || e.ctrlKey || console.log(document.activeElement)
-// }, false)
   }
 
   // focus enhancements

@@ -19,7 +19,7 @@ const InfoWindowContent = (props) => {
   return (
     <div className='infoWindow'>
       <img className='infoWindowImg' src={`${photo.prefix}200x200${photo.suffix}`} alt={name +' image'} />
-      <p className='infoWindowName'>{ name }</p>
+      <h2 className='infoWindowName'>{ name }</h2>
       <p className='infoWindowAddress'>{ address }</p>
       <div className='infoWindowCategoryContainer'>
         <img className='infoWindowCatIcon' src={`${categories[0].icon.prefix}32${categories[0].icon.suffix}`} alt={categories[0].name +' category icon'} />

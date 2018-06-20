@@ -125,7 +125,10 @@ class App extends Component {
     // if there is no photo, then foursquare api didn't load (no connection)
     if (!venueObject.details.photo) {
       return (
-        <p>Sorry, no network connection</p>
+        <div>
+          <h2>{venueObject.details.venue.name}</h2>
+          <p>Sorry, no network connection</p>
+        </div>
       )
     } else {
       return (
@@ -179,7 +182,7 @@ class App extends Component {
 
   handleResultClick(venueName, index) {
     const { venues, showingVenues } = this.state
-    let showingVenue = venues.filter((venue) => venue.id === showingVenues[index].details.id)
+    let showingVenue = venues.filter(({venue}) => venue.name === showingVenues[index].details.venue.name)
     showingVenue = this.prepareShowingVenues(showingVenue)
     this.setState({ filterInput: venueName, showingVenues: showingVenue },
       () => this.toggleInfoWindow.call(this, 0)
@@ -224,6 +227,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { filterInput, showingVenues } = this.state
     // outer-container & page-wrap elements stand to help the sidemenu animate correctly
     return (

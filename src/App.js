@@ -227,7 +227,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
     const { filterInput, showingVenues } = this.state
     // outer-container & page-wrap elements stand to help the sidemenu animate correctly
     return (

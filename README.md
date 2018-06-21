@@ -11,7 +11,8 @@ it was developed by Osama Aloqaily, https://github.com/o-aloqaily.
   - in the project root, type: "npm install" to install all dependencies.
   - in the project root, type: "npm run build" to build the project then "serve -s build" to run it.
   - You can now browse the project on "localhost:3000" or on the link provided by the terminal.
-
+  
+  
 ####Note: Using or browsing the project without first building it will cause the serviceWorker to fail running and caching will not be available.
 
 

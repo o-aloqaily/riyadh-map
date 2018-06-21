@@ -13,11 +13,11 @@ it was developed by Osama Aloqaily, https://github.com/o-aloqaily.
   - You can now browse the project on "localhost:3000" or on the link provided by the terminal.
   
   
-####Note: Using or browsing the project without first building it will cause the serviceWorker to fail running and caching will not be available.
+#### Note: Using or browsing the project without first building it will cause the serviceWorker to fail running and caching will not be available.
 
 
 
-###Features
+### Features
 
 - Offline use: Caching is used to cache website's data for offline use.
 - Search, Filter Results: Search & Filter the results.

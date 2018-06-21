@@ -225,6 +225,14 @@ class App extends Component {
 
   render() {
     const { filterInput, showingVenues } = this.state
+
+    // if there is an active marker (clicked to be viewed) get the location of it
+    // to center it on the map
+    let mapCenter = showingVenues.filter((venue) => venue.isInfoWindowVisible)
+    if (mapCenter.length)
+      mapCenter = mapCenter[0].details.venue.location
+
+
     // outer-container & page-wrap elements stand to help the sidemenu animate correctly
     return (
       <div id="outer-container">
@@ -237,13 +245,13 @@ class App extends Component {
           handleDeleteFilter={this.handleDeleteFilter.bind(this)}
           filterInput={filterInput}
         />
-
         <div id="page-wrap">
           <Header />
-          <Map
-            markers={showingVenues.map((venue) => venue.marker)}
-          />
         </div>
+        <Map
+          markers={showingVenues.map((venue) => venue.marker)}
+          center={mapCenter}
+        />
         <Alert stack={{limit: 3}} />
       </div>
 

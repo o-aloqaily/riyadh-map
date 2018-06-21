@@ -247,11 +247,11 @@ class App extends Component {
         />
         <div id="page-wrap">
           <Header />
+          <Map
+            markers={showingVenues.map((venue) => venue.marker)}
+            center={mapCenter}
+          />
         </div>
-        <Map
-          markers={showingVenues.map((venue) => venue.marker)}
-          center={mapCenter}
-        />
         <Alert stack={{limit: 3}} />
       </div>
 
